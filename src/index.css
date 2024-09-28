@@ -4,6 +4,13 @@
 @tailwind utilities;
 
 @font-face {
+  font-family: 'HSSanTokki20-Regular';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2405@1.0/HSSanTokki20-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
   font-family: 'SUITE-Regular';
   src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
   font-weight: 400;
@@ -18,6 +25,13 @@
 }
 
 @font-face {
+  font-family: 'SUITE-ExtraBold';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-ExtraBold.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
   font-family: 'SUITE-Heavy';
   src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Heavy.woff2') format('woff2');
   font-weight: 900;
@@ -25,15 +39,19 @@
 }
 
 body {
-
   font-family: 'SUITE-Regular', sans-serif;
   background-color: #f9f9f9;
   color: #333;
   margin: 0;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
 }
 
 .suite-bold {
   font-family: 'SUITE-Bold', sans-serif;
+}
+
+.suite-extrabold {
+  font-family: 'SUITE-ExtraBold', sans-serif;
 }
 
 .suite-heavy {
@@ -46,18 +64,30 @@ body {
   font-style: normal;
 }
 
-  * 393px보다 화면이 작은 경우 */
-  @media screen and (max-width: 393px) {
-    body {
-      width: 100%; /* 화면 너비에 맞춤 */
-      margin: 0 auto;
-    }
-  }
+.sulphur-point-bold {
+  font-family: "Sulphur Point", system-ui;
+  font-weight: 700;
+  font-style: normal;
+}
 
-  /* 393px보다 화면이 큰 경우 */
-  @media screen and (min-width: 393px) {
-    body {
-      width: 393px; /* 화면 너비를 393px로 고정 */
-      margin: 0 auto; /* 화면 중앙에 위치 */
-    }
+.santokki {
+  font-family: 'HSSanTokki20-Regular', sans-serif;
+}
+
+/* 393px보다 화면이 작은 경우 */
+@media screen and (max-width: 393px) {
+  body {
+    width: 100%; /* 화면 너비에 맞춤 */
+    margin: 0 auto;
+    box-shadow: none; /* 작은 화면에서는 그림자 제거 */
   }
+}
+
+/* 393px보다 화면이 큰 경우 */
+@media screen and (min-width: 393px) {
+  body {
+    width: 393px; /* 화면 너비를 393px로 고정 */
+    margin: 0 auto; /* 화면 중앙에 위치 */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+  }
+}

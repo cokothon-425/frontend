@@ -3,7 +3,7 @@ import React from "react";
 const BottomNav = () => {
   return (
     <div className="">
-        <div className="fixed z-50 w-[90%] h-16 max-w-lg -translate-x-1/2 bg-white bg-opacity-80 border border-gray-200 border-opacity-20 rounded-3xl bottom-4 left-1/2 backdrop-blur-2xl drop-shadow-md mx-auto">
+        <div className="fixed z-50 w-[90%] h-16 max-w-lg -translate-x-1/2 bg-white bg-opacity-60 border border-gray-200 border-opacity-20 rounded-3xl bottom-4 left-1/2 backdrop-blur-2xl drop-shadow-md mx-auto">
         <div className="grid h-full max-w-lg grid-cols-4 mx-auto">
             <button data-tooltip-target="tooltip-home" type="button" className="inline-flex flex-col items-center justify-center px-5 rounded-s-full hover:bg-gray-50 dark:hover:bg-gray-800 group">
                 <svg className="w-5 h-5 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
