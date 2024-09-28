@@ -1,7 +1,10 @@
 import BookCoverScore from "../components/BookCoverScore";
 import Group from "../components/Group/Group";
+import {useEffect} from "react";
+import {useNavigate} from "react-router-dom";
 
 function Home() {
+  const navigate = useNavigate();
   const books = [
     { src: "/book_example.png", title: "1퍼센트 부자들의 법칙", author: "가나다", num: "1" },
     { src: "/book_example.png", title: "난장이가 쏘아 올린 작은 공", author: "작가", num: "2" },
@@ -9,6 +12,12 @@ function Home() {
     { src: "/book_example.png", title: "책 제목", author: "작가", num: "4" },
     { src: "/book_example.png", title: "책 제목", author: "작가", num: "5" },
   ];
+
+  useEffect(() => {
+    if (!localStorage.getItem('token')) {
+      navigate("/login");
+    }
+  }, []);
 
   const groups = Array(5).fill(null); // 그룹은 단순히 5개로 반복
 
