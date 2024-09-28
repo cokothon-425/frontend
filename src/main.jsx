@@ -1,12 +1,14 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
-import Topbar from './components/Topbar.jsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import App from "./App.jsx";
+import "./index.css";
+import Topbar from "./components/Topbar.jsx";
+import BookSelectPage from "./pages/Group/BookSelectPage.jsx";
+import GroupPage from "./pages/Group/GroupPage.jsx";
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Topbar />
-    <App />
-  </StrictMode>,
-)
+    <GroupPage />
+  </StrictMode>
+);
