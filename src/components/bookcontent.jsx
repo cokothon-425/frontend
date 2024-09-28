@@ -51,6 +51,28 @@ function RectangleWithText() {
         </div>
         </div>
 
+        <div className="flex flex-col justify-center items-center text-base bg-white mb-2 text-black rounded-lg font-SUITE p-2 drop-shadow-lg h-[150px]">
+            <i className="fas fa-plus text-4xl" style={{ color: "#4a4a4a" }}></i>
+            <span className="mt-2 text-gray-700 text-lg">새 글 쓰기</span>
+        </div>
+
+        <div className="relative flex flex-col justify-center items-start text-base bg-white mb-2 text-black rounded-lg font-SUITE p-4 drop-shadow-lg">
+        <div className="text-left w-full font-bold">
+            글 작성
+        </div>
+        <div className="text-left w-full font-normal">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        </div>
+        <div className="text-left w-full font-normal text-gray-700 text-sm">
+            100/100
+        </div>
+        <div className="absolute right-4 bottom-4">
+            <button className="bg-[#5255F8] text-white rounded-lg px-4 py-2 text-sm">
+                게시
+            </button>
+        </div>
+        </div>
+
       </div>
     );
   }
