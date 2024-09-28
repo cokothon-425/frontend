@@ -1,4 +1,4 @@
-import BookCoverScore from "../../components/BookCoverScore";
+import BookCover from "../../components/BookCover";
 import bookcontent from "../../components/bookcontent";
 import BottomNav from "../../components/BottomNav";
 import { useParams } from 'react-router-dom';
@@ -7,8 +7,41 @@ import { useParams } from 'react-router-dom';
 const GroupDetailPage = () => {
     const { groupId } = useParams();
 
+    const comments = [
+        {
+          page_start: "000",
+          page_start: "999",
+          comment: "lorem ipsum",
+          date: "0000. 00. 00",
+        },
+        {
+            page_start: "000",
+            page_start: "999",
+            comment: "lorem ipsum",
+            date: "0000. 00. 00",
+          },
+          {
+            page_start: "000",
+            page_start: "999",
+            comment: "lorem ipsum",
+            date: "0000. 00. 00",
+          },
+          {
+            page_start: "000",
+            page_start: "999",
+            comment: "lorem ipsum",
+            date: "0000. 00. 00",
+          },
+          {
+            page_start: "000",
+            page_start: "999",
+            comment: "lorem ipsum",
+            date: "0000. 00. 00",
+          },
+      ];
+
     return (
-        <div className="flex flex-col items-start justify-start min-h-screen bg-white p-2">
+        <div className="flex flex-col items-start justify-start min-h-screen bg-white p-4">
             <h1 className="text-2xl font-bold text-gray-800 mb-1">
                 1퍼센트 부자가 되어보자 모임
             </h1>
@@ -17,9 +50,9 @@ const GroupDetailPage = () => {
             </p>
             <div className="w-full bg-gray-200 p-4 rounded-lg flex"> {/* p-5에서 p-4로 변경 */}
                 <div className="w-1/2"> 
-                    <BookCoverScore 
+                    <BookCover 
                         src="/book_example.png" 
-                        title="1퍼센트 부자들의 모임"              
+                        title="1퍼센트 부자들의 법칙"              
                         author="가나다"          
                         num={7}                       
                         className="text-lg"   

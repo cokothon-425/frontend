@@ -33,15 +33,15 @@ function bookcontent() {
         </div>
 
         <div className="flex flex-col justify-center items-start text-base bg-white mb-2 text-black rounded-lg font-SUITE p-2 drop-shadow-lg">
-        <div className="text-left w-full font-bold">
-            000p ~ 000p
-        </div>
-        <div className="text-left w-full font-normal">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-        </div>
-        <div className="text-right w-full font-normal text-gray-700 text-sm">
-            2024.09.25
-        </div>
+            <div className="text-left w-full font-bold">
+                000p ~ 000p
+            </div>
+            <div className="text-left w-full font-normal">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+            </div>
+            <div className="text-right w-full font-normal text-gray-700 text-sm">
+                2024.09.25
+            </div>
         </div>
 
         <div className="flex flex-col justify-center items-start text-base bg-white mb-2 text-black rounded-lg font-SUITE p-2 drop-shadow-lg">
