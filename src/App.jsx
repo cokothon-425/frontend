@@ -1,10 +1,11 @@
-import './App.css';
-import RectangleWithText from './components/bookcontent'; 
+
+import { useState } from "react";
+import "./App.css";
+
 function App() {
   return (
-    <div>
-      <h1 className="text-3xl font-bold text-emerald-600">readwith</h1>
-      <RectangleWithText /> {/* RectangleWithText 컴포넌트 사용 */}
+    <div className="bg-white font-black text-white p-4">
+      <h1 className="text-3xl font-bold">TailwindCSS가 작동합니다!</h1>
     </div>
   );
 }
