@@ -50,8 +50,8 @@ function GroupPage() {
   ];
 
   return (
-    <div className="mb-20">
-      <h1 className="suite-bold text-2xl mb-4 pl-4 pt-4">모임 찾기</h1>
+    <div className="mb-20 p-2">
+      <h1 className="suite-bold text-2xl mb-4">모임 찾기</h1>
       <SearchBar />
       {groups.map((group, index) => (
         <GroupWithInvitedMembers key={index} group={group} />

@@ -1,4 +1,4 @@
-function RectangleWithText() {
+function bookcontent() {
     // const rectangleStyle = {
     //   width: '1000px',
     //   height: '150px',
@@ -78,5 +78,5 @@ function RectangleWithText() {
     );
   }
   
-  export default RectangleWithText;
+  export default bookcontent;
   

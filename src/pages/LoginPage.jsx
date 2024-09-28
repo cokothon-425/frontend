@@ -1,4 +1,5 @@
 import KakaoIcon from '../assets/kakao.svg';
+import BottomNav from "../components/BottomNav";
 
 function LoginPage() {
   const handleLogin = () => {
@@ -22,6 +23,7 @@ function LoginPage() {
         카카오로 계속하기
         <div className={"w-[20px] h-[20px]"}></div>
       </button>
+      <BottomNav />
     </div>
   );
 }

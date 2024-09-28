@@ -1,14 +1,14 @@
-import BookCoverScore from "./components/BookCoverScore"; 
-import RectangleWithText from "./components/bookcontent"; 
+import BookCoverScore from "../../components/BookCoverScore";
+import bookcontent from "../../components/bookcontent";
 import BottomNav from "../../components/BottomNav";
 import { useParams } from 'react-router-dom';
 
 
 const GroupDetailPage = () => {
     const { groupId } = useParams();
-    
+
     return (
-        <div className="flex flex-col items-start justify-start min-h-screen bg-white p-4">
+        <div className="flex flex-col items-start justify-start min-h-screen bg-white p-2">
             <h1 className="text-2xl font-bold text-gray-800 mb-1">
                 1퍼센트 부자가 되어보자 모임
             </h1>
@@ -47,7 +47,7 @@ const GroupDetailPage = () => {
 
             <div className="mt-4 w-full">
                 {Array.from({ length: 1 }).map((_, index) => (
-                    <RectangleWithText key={index} />
+                    <bookcontent key={index} />
                 ))}
             </div>
             {/* BottomNav도 모든 페이지에 고정 */}

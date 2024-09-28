@@ -23,7 +23,7 @@ function Home() {
   const groups = Array(5).fill(null); // 그룹은 단순히 5개로 반복
 
   return (
-    <div className="mb-20">
+    <div className="mb-20 p-2">
       <h3 className="suite-extrabold mb-2 text-xl pl-4 pt-4">모임 인기 책</h3>
       <div className="overflow-x-auto whitespace-nowrap">
         <div className="inline-flex gap-4">
