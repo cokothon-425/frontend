@@ -1,8 +1,13 @@
 import React from "react";
 import BottomNav from "../../components/BottomNav";
 import BookSelectPage from "./BookSelectPage";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function GroupCreatePage() {
+    const navigate = useNavigate();
+    const location = useLocation();
+
+
   return (
     <div className="max-w-md mx-auto p-4">
       <h1 className="suite-bold text-2xl mb-4">모임 생성</h1>
@@ -49,8 +54,8 @@ function GroupCreatePage() {
 
       {/* 모임 생성 및 다음에 하기 버튼 */}
       <div className="relative bottom-0 left-0 w-full p-4">
-        <button className="w-full bg-blue-600 text-white p-3 rounded-lg mb-2">모임 생성하기</button>
-        <button className="w-full bg-gray-100 text-black p-3 rounded-lg border">다음에 하기</button>
+        <button onClick={() => navigate(-1)} className="w-full bg-blue-600 text-white p-3 rounded-lg mb-2">모임 생성하기</button>
+        <button onClick={() => navigate(-1)} className="w-full bg-gray-100 text-black p-3 rounded-lg border">다음에 하기</button>
     </div>
       {/* BottomNav도 모든 페이지에 고정 */}
       <BottomNav />
