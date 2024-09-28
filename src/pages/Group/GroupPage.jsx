@@ -3,6 +3,7 @@ import SearchBar from "../../components/SearchBar";
 import GroupWithInvitedMembers from "../../components/Group/GroupWithInvitedMembers";
 import BottomNav from "../../components/BottomNav";
 
+
 function GroupPage() {
   const groups = [
     {
