@@ -1,4 +1,5 @@
 import React from "react";
+import BottomNav from "../../components/BottomNav";
 
 function GroupCreatePage() {
   return (
@@ -50,6 +51,8 @@ function GroupCreatePage() {
         <button className="w-full bg-blue-600 text-white p-3 rounded-lg mb-2">모임 생성하기</button>
         <button className="w-full bg-gray-100 text-black p-3 rounded-lg border">다음에 하기</button>
       </div>
+      {/* BottomNav도 모든 페이지에 고정 */}
+      <BottomNav />
     </div>
   );
 }
