@@ -1,8 +1,8 @@
-function BookComment ({ page_start, page_end, comment, date }) {
+function BookComment_end ({ comment, date }) {
   return (
     <div className="flex flex-col justify-center items-start text-base bg-white mb-2 text-black rounded-lg font-SUITE p-2 drop-shadow-md">
             <div className="text-left w-full font-bold">
-                {page_start}p ~ {page_end}p
+                나의 독후감은?
             </div>
             <div className="text-left w-full font-normal">
                 {comment}
@@ -14,4 +14,4 @@ function BookComment ({ page_start, page_end, comment, date }) {
   )
 }
 
-export default BookComment;
+export default BookComment_end;

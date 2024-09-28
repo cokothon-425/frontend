@@ -3,7 +3,7 @@ import BottomNav from "../components/BottomNav";
 
 function LoginPage() {
   const handleLogin = () => {
-    window.location.href = "http://localhost:8080/oauth2/authorization/kakao";
+    window.location.href = import.meta.env.VITE_KAKAO_URL;
   }
 
   return (
