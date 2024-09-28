@@ -1,19 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Sulphur+Point:wght@300;400;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @font-face {
-  font-family: 'SeoulHangangM';
-  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulHangangM.woff') format('woff');
-  font-weight: normal;
+  font-family: 'SUITE-Regular';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SUITE-Bold';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SUITE-Heavy';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Heavy.woff2') format('woff2');
+  font-weight: 900;
   font-style: normal;
 }
 
 body {
 
-  font-family: 'SeoulHangangM', sans-serif;
+  font-family: 'SUITE-Regular', sans-serif;
   background-color: #f9f9f9;
   color: #333;
+  margin: 0;
+}
+
+.suite-bold {
+  font-family: 'SUITE-Bold', sans-serif;
+}
+
+.suite-heavy {
+  font-family: 'SUITE-Heavy', sans-serif;
+}
+
+.sulphur-point-regular {
+  font-family: "Sulphur Point", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
 
   * 393px보다 화면이 작은 경우 */
   @media screen and (max-width: 393px) {
@@ -30,5 +61,3 @@ body {
       margin: 0 auto; /* 화면 중앙에 위치 */
     }
   }
-
-}
