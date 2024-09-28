@@ -47,10 +47,10 @@ function GroupCreatePage() {
       </div>
 
       {/* 모임 생성 및 다음에 하기 버튼 */}
-      <div className="mt-8">
+      <div className="relative bottom-0 left-0 w-full p-4">
         <button className="w-full bg-blue-600 text-white p-3 rounded-lg mb-2">모임 생성하기</button>
         <button className="w-full bg-gray-100 text-black p-3 rounded-lg border">다음에 하기</button>
-      </div>
+    </div>
       {/* BottomNav도 모든 페이지에 고정 */}
       <BottomNav />
     </div>
