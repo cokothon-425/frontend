@@ -9,6 +9,7 @@ import LoginPage from './pages/LoginPage.jsx';
 import Topbar from './components/Topbar.jsx';
 import GroupPage from './pages/Group/GroupPage.jsx';
 import KakaoCallbackPage from "./pages/KakaoCallbackPage.jsx";
+import BookSelectPage from './pages/Group/BookSelectPage.jsx';
 
 
 createRoot(document.getElementById("root")).render(
@@ -25,6 +26,7 @@ createRoot(document.getElementById("root")).render(
           <Route path="/group" element={<GroupPage />} />
           <Route path="/group/:groupId" element={<GroupDetailPage />} />
           <Route path="/group-creation" element={<GroupCreatePage />} />
+          <Route path="/book-select" element={<BookSelectPage />} />
           <Route path="/login" element={<LoginPage />} />
         </Routes>
       </div>

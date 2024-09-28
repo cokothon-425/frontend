@@ -1,5 +1,6 @@
 import React from "react";
 import BottomNav from "../../components/BottomNav";
+import BookSelectPage from "./BookSelectPage";
 
 function GroupCreatePage() {
   return (
@@ -21,7 +22,7 @@ function GroupCreatePage() {
           </div>
         </div>
         <div className="my-4 text-center">
-            <button className="text-sm bg-gray-100 p-2 rounded-lg border">책 선택하기</button>
+            <a href="/book-select" className="text-sm bg-gray-100 p-2 rounded-lg border">책 선택하기</a>
         </div>
         </div>
 

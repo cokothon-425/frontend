@@ -4,7 +4,7 @@ import React from "react";
 import SearchBar from "../../components/SearchBar";
 import GroupWithInvitationButton from "../../components/Group/GroupWithInvitationButton";
 
-function GroupPage() {
+function BookSelectPage() {
   const groups = [
     {
       src: "/book_example.png",
@@ -40,7 +40,7 @@ function GroupPage() {
 
   return (
     <div>
-      <h3 className="font-extrabold mb-2 text-xl ml-2">모임 찾기</h3>{" "}
+      <h3 className="font-extrabold mb-2 text-xl ml-2">책 찾기</h3>{" "}
       <SearchBar />
       {groups.map((group, index) => (
         <GroupWithInvitationButton key={index} group={group} />
@@ -49,4 +49,4 @@ function GroupPage() {
   );
 }
 
-export default GroupPage;
+export default BookSelectPage;
