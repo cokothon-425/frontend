@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import SearchBar from "../../components/SearchBar";
-import Books from "../../components/Group/Books";
+import Books from "../../components/Books";
 
 const groups = [
     {
