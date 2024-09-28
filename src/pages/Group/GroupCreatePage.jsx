@@ -30,7 +30,7 @@ function GroupCreatePage() {
           <div className="mb-4">
             <label className="suite-bold block mb-2">모임 소개</label>
             <textarea
-              className="w-full h-24 p-2 border rounded-lg"
+              className="w-full h-24 p-2 border rounded-lg resize-none"
               placeholder="모임을 소개해주세요"
             />
           </div>
