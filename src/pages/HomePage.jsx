@@ -14,7 +14,7 @@ function Home() {
 
   return (
     <div className="mb-20">
-      <h3 className="suite-extrabold mb-2 text-xl ml-2">모임 인기 책</h3>
+      <h3 className="suite-extrabold mb-2 text-xl pl-4 pt-4">모임 인기 책</h3>
       <div className="overflow-x-auto whitespace-nowrap">
         <div className="inline-flex gap-4">
           {books.map((book, index) => (

@@ -1,13 +1,11 @@
 import React from "react";
 import GroupContents from "./GroupContents";
-import InvitedMembers from "./InvitedMembers";
 import InvitationButton from "./InvitationButton";
 
 const GroupWithInvitedMembers = () => {
   return (
-    <div className="flex flex-row border-2 justify-between rounded-md shadow-xl text-black items-center">
+    <div className="flex flex-row border-2 justify-between rounded-2xl shadow-md text-black items-center mb-4 mr-2 ml-2">
       <GroupContents />
-      <InvitedMembers />
       <InvitationButton />
     </div>
   );

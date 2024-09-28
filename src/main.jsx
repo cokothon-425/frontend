@@ -1,12 +1,3 @@
-
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import App from "./App.jsx";
-import "./index.css";
-import Topbar from "./components/Topbar.jsx";
-
-
-
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.jsx'; 
@@ -17,16 +8,11 @@ import GroupCreatePage from './pages/Group/GroupCreatePage.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import Topbar from './components/Topbar.jsx';
 import BottomNav from './components/BottomNav.jsx';
+import GroupPage from './pages/Group/GroupPage.jsx';
 
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-
-    <Topbar />
-
-  </StrictMode>
-);
-
     <Router>
       <div className="relative min-h-screen">
         {/* Topbar를 모든 페이지에 렌더링 */}
@@ -35,6 +21,7 @@ createRoot(document.getElementById("root")).render(
         {/* Routes 설정 */}
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="group" element={<GroupPage />} />
           <Route path="/group-creation" element={<GroupCreatePage />} />
           <Route path="/login" element={<LoginPage />} />
         </Routes>
@@ -45,4 +32,3 @@ createRoot(document.getElementById("root")).render(
     </Router>
   </StrictMode>
 );
-
