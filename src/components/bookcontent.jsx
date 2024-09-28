@@ -15,6 +15,11 @@ function RectangleWithText() {
     return (
       <div>
         
+        <div className="flex flex-col justify-center items-center text-base bg-white mb-2 text-black rounded-lg font-SUITE p-2 drop-shadow-lg h-[150px]">
+            <i className="fas fa-plus text-4xl" style={{ color: "#4a4a4a" }}></i>
+            <span className="mt-2 text-gray-700 text-lg">새 글 쓰기</span>
+        </div>
+
         <div className="flex flex-col justify-center items-start text-base bg-white mb-2 text-black rounded-lg font-SUITE p-2 drop-shadow-lg">
         <div className="text-left w-full font-bold">
             읽기 전 나의 생각은?
@@ -51,11 +56,7 @@ function RectangleWithText() {
         </div>
         </div>
 
-        <div className="flex flex-col justify-center items-center text-base bg-white mb-2 text-black rounded-lg font-SUITE p-2 drop-shadow-lg h-[150px]">
-            <i className="fas fa-plus text-4xl" style={{ color: "#4a4a4a" }}></i>
-            <span className="mt-2 text-gray-700 text-lg">새 글 쓰기</span>
-        </div>
-
+        
         <div className="relative flex flex-col justify-center items-start text-base bg-white mb-2 text-black rounded-lg font-SUITE p-4 drop-shadow-lg">
         <div className="text-left w-full font-bold">
             글 작성
