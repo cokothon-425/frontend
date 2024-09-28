@@ -1,8 +1,12 @@
 import BookCoverScore from "./components/BookCoverScore"; 
 import RectangleWithText from "./components/bookcontent"; 
 import BottomNav from "../../components/BottomNav";
+import { useParams } from 'react-router-dom';
+
 
 const GroupDetailPage = () => {
+    const { groupId } = useParams();
+    
     return (
         <div className="flex flex-col items-start justify-start min-h-screen bg-white p-4">
             <h1 className="text-2xl font-bold text-gray-800 mb-1">

@@ -4,6 +4,7 @@ import './index.css';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from './pages/HomePage.jsx';
 import GroupCreatePage from './pages/Group/GroupCreatePage.jsx';
+import GroupDetailPage from './pages/Group/GroupDetailPage.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import Topbar from './components/Topbar.jsx';
 import GroupPage from './pages/Group/GroupPage.jsx';
@@ -22,6 +23,7 @@ createRoot(document.getElementById("root")).render(
           <Route path="/" element={<Home />} />
           <Route path="/callback" element={<KakaoCallbackPage />} />
           <Route path="/group" element={<GroupPage />} />
+          <Route path="/group/:groupId" element={<GroupDetailPage />} />
           <Route path="/group-creation" element={<GroupCreatePage />} />
           <Route path="/login" element={<LoginPage />} />
         </Routes>
