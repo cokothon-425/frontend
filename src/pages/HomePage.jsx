@@ -2,6 +2,7 @@ import BookCoverScore from "../components/BookCoverScore";
 import Group from "../components/Group/Group";
 import {useEffect} from "react";
 import {useNavigate} from "react-router-dom";
+import BottomNav from "../components/BottomNav";
 
 function Home() {
   const navigate = useNavigate();
@@ -43,6 +44,8 @@ function Home() {
                 <Group key={index} />
             ))}
         </div>
+        {/* BottomNav도 모든 페이지에 고정 */}
+        <BottomNav />
     </div>
   );
 }

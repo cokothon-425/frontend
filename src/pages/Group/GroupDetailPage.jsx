@@ -1,5 +1,6 @@
 import BookCoverScore from "./components/BookCoverScore"; 
 import RectangleWithText from "./components/bookcontent"; 
+import BottomNav from "../../components/BottomNav";
 
 const GroupDetailPage = () => {
     return (
@@ -45,6 +46,8 @@ const GroupDetailPage = () => {
                     <RectangleWithText key={index} />
                 ))}
             </div>
+            {/* BottomNav도 모든 페이지에 고정 */}
+        <BottomNav />
         </div>
     );
 };

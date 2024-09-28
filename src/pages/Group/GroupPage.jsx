@@ -1,6 +1,7 @@
 import React from "react";
 import SearchBar from "../../components/SearchBar";
 import GroupWithInvitedMembers from "../../components/Group/GroupWithInvitedMembers";
+import BottomNav from "../../components/BottomNav";
 
 function GroupPage() {
   const groups = [
@@ -55,6 +56,8 @@ function GroupPage() {
       {groups.map((group, index) => (
         <GroupWithInvitedMembers key={index} group={group} />
       ))}
+      {/* BottomNav도 모든 페이지에 고정 */}
+      <BottomNav />
     </div>
   );
 }

@@ -25,9 +25,6 @@ createRoot(document.getElementById("root")).render(
           <Route path="/group-creation" element={<GroupCreatePage />} />
           <Route path="/login" element={<LoginPage />} />
         </Routes>
-
-        {/* BottomNav도 모든 페이지에 고정 */}
-        <BottomNav />
       </div>
     </Router>
   </StrictMode>
