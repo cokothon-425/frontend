@@ -15,7 +15,7 @@ function LoginPage() {
 
       {/* 카카오 로그인 버튼 */}
       <button
-        className="w-[300px] h-[56px] pl-4 pr-4 flex justify-between items-center bg-[#FFDD00] p-3 rounded-[14px] shadow-md text-black text-lg"
+        className="w-[300px] h-[56px] pl-4 pr-4 flex justify-between items-center bg-[#FFDD00] p-3 rounded-[14px] suite-bold text-black text-lg"
         onClick={handleLogin}
       >
         <img src={KakaoIcon} alt="카카오" width={20} height={20} />
