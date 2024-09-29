@@ -1,33 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import BookCover from "../../components/BookCover";
-import BookComment from "../../components/BookComment";
-import BookComment_start from "../../components/BookComment_start";
-import BookComment_end from "../../components/BookComment_end";
 import BottomNav from "../../components/BottomNav";
 import { useParams } from 'react-router-dom';
 import { privateAxios } from '../../apis/axiosInstances';
-
+import BookComment from '../../components/BookComment';
+import BookComment_start from '../../components/BookComment_start';
+import BookComment_end from '../../components/BookComment_end';
+ 
 const GroupDetailPage = () => {
     const { groupId } = useParams();
     
     const [groupData, setGroupData] = useState(null); // 그룹 데이터를 저장할 상태
     const [isWriting, setIsWriting] = useState(false); // 글쓰기 상태 관리
     const [currentText, setCurrentText] = useState(''); // 글자 수 상태 관리
-    const [readingStatus, setReadingStatus] = useState('before'); // 독서 상태 관리
-    const [pagesRead, setPagesRead] = useState({ start: '', end: '' }); // 읽은 페이지 범위 관리
+    const [readingStatus, setReadingStatus] = useState('BEFORE'); // 독서 상태 관리
+    const [pagesRead, setPagesRead] = useState({ start: 0, end: 0 }); // 읽은 페이지 범위 관리
     const [selectedUser, setSelectedUser] = useState(0); // 선택된 사용자 인덱스 관리
 
-    useEffect(() => {
-        const fetchGroup = async () => {
-            try {
-                const response = await privateAxios.get(`/groups/${groupId}`);
-                console.log(response.data);  // API로부터 받아온 데이터 출력
-                setGroupData(response.data); // 받아온 데이터를 상태로 저장
-            } catch (error) {
-                console.error("Error fetching group:", error);
-            }
-        };
+    const fetchGroup = async () => {
+        try {
+            const response = await privateAxios.get(`/groups/${groupId}`);
+            console.log(response.data);  // API로부터 받아온 데이터 출력
+            setGroupData(response.data); // 받아온 데이터를 상태로 저장
+        } catch (error) {
+            console.error("Error fetching group:", error);
+        }
+    };
 
+    useEffect(() => {
         fetchGroup();
     }, [groupId]);
 
@@ -36,8 +36,37 @@ const GroupDetailPage = () => {
         setCurrentText(e.target.value);
     };
 
+    const handleRecordPost = async() => {
+        console.log("게시 누름");
+        setIsWriting(false); // 글쓰기 상태 초기화
+        await privateAxios.post(`/records`, {
+            content: currentText,
+            startPage: pagesRead.start,
+            endPage: pagesRead.end,
+            status: readingStatus,
+            groupId: groupId,
+        }).then((response) => {
+            if (response.status === 200) {
+                console.log("요청 성공");
+                fetchGroup();
+            }
+        }).catch((error) => {
+            console.log(error);
+        });
+    };
+
     if (!groupData) {
         return <div>로딩 중...</div>; // 데이터가 로딩 중일 때 표시
+    }
+
+    const recordByStatus = (status, record, index) => {
+        if (status === 'BEFORE') {
+            return <BookComment_start key={index} commment={record.content} date={record.createdAt} />;
+        } else if (status === 'READING') {
+            return <BookComment key={index} commment={record.content} date={record.createdAt} page_start={record.startPage} page_end={record.page_end} />;
+        } else {
+            return <BookComment_end key={index} commment={record.content} date={record.createdAt} />;
+        }
     }
 
     return (
@@ -68,14 +97,14 @@ const GroupDetailPage = () => {
 
             {/* 사용자 선택 원 */}
             <div className="w-full mt-6 overflow-x-scroll flex space-x-4 p-4">
-                {groupData.records && groupData.records.length > 0 ? (
-                    groupData.records.map((record, index) => (
+                {groupData.members && groupData.members.length > 0 ? (
+                    groupData.members.map((member, index) => (
                         <div 
                             key={index}
                             onClick={() => setSelectedUser(index)} // 사용자를 선택
                             className={`w-12 h-12 ${selectedUser === index ? 'bg-blue-300' : 'bg-gray-300'} rounded-full flex-shrink-0 flex items-center justify-center cursor-pointer`}
                         >
-                            <span className="text-sm text-white">{record.name[0]}</span> {/* 사용자의 이름 첫 글자 */}
+                            <span className="text-sm text-white">{member.name[0]}</span> {/* 사용자의 이름 첫 글자 */}
                         </div>
                     ))
                 ) : (
@@ -84,8 +113,8 @@ const GroupDetailPage = () => {
             </div>
 
             <div className="mt-4">
-                {groupData.records && groupData.records.length > 0 && (
-                    <p className="text-2xl font-bold text-gray-800">{groupData.records[selectedUser].name}</p> 
+                {groupData.members && groupData.members.length > 0 && (
+                    <p className="text-2xl font-bold text-gray-800">{groupData.members[selectedUser].name}</p> 
                 )}
             </div>
 
@@ -108,9 +137,9 @@ const GroupDetailPage = () => {
                                 value={readingStatus}
                                 onChange={(e) => setReadingStatus(e.target.value)}
                             >
-                                <option value="before">아직 읽기 전이에요</option>
-                                <option value="reading">책 읽는 중이에요</option>
-                                <option value="after">다 읽었어요</option>
+                                <option value="BEFORE">아직 읽기 전이에요</option>
+                                <option value="READING">책 읽는 중이에요</option>
+                                <option value="AFTER">다 읽었어요</option>
                             </select>
 
                             {readingStatus === 'reading' && (
@@ -144,7 +173,7 @@ const GroupDetailPage = () => {
                             <p className="text-sm text-gray-400">{currentText.length} / 100</p>
                             <button 
                                 className="bg-indigo-500 text-white p-2 pr-6 pl-6 rounded-lg"
-                                onClick={() => setIsWriting(false)} // 게시 버튼 클릭 시 상태 초기화
+                                onClick={handleRecordPost} // 게시 버튼 클릭 시 상태 초기화
                             >
                                 게시
                             </button>
@@ -152,31 +181,15 @@ const GroupDetailPage = () => {
                     </div>
                 )}
 
-                {/* 선택된 사용자의 댓글 보여주기 */}
-                {groupData.records && groupData.records.length > 0 && (
-                    <>
-                        <BookComment_start
-                            comment={groupData.records[selectedUser].comment}
-                            date={groupData.records[selectedUser].date}
-                        />
-                        <BookComment 
-                            page_start={groupData.records[selectedUser].page_start}
-                            page_end={groupData.records[selectedUser].page_end}
-                            comment={groupData.records[selectedUser].comment}
-                            date={groupData.records[selectedUser].date}
-                        />
-                        <BookComment_end
-                            comment={groupData.records[selectedUser].comment}
-                            date={groupData.records[selectedUser].date}
-                        />
-                    </>
-                )}
+                {
+                    groupData.records.filter((record) => record.memberId === groupData.members[selectedUser].id)
+                        .map((record, index) => (recordByStatus(record.status, record, index)))
+                }
             </div>
-
             {/* BottomNav 고정 */}
             <BottomNav />
         </div>
-    );
+    );  
 };
 
 export default GroupDetailPage;
