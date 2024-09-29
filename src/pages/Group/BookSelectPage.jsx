@@ -58,7 +58,7 @@ function BookSelectPage() {
       />
       {(books.length > 0) ? books.map((book, index) => {
             console.log('length: ' + books.length);
-            return <Books key={index} src={book.src} title={book.title} author={book.author} />
+            return <Books key={index} src={book.cover} title={book.title} author={book.author} isbn={book.isbn} publisher={book.publisher} />
         }) : null}
     </div>
   );
