@@ -33,6 +33,7 @@ function GroupPage() {
           groups.map((group, index) => (
             <GroupJoinCard
               key={index}
+              group_id={group.id}
               src={group.book.cover} // 책 커버 이미지
               group_name={group.name} // 그룹 이름
               title={group.book.title} // 책 제목
@@ -47,7 +48,7 @@ function GroupPage() {
           <p>모임을 찾을 수 없습니다.</p>
         )}
       </div>
-      
+
       {/* BottomNav도 모든 페이지에 고정 */}
       <BottomNav />
     </div>

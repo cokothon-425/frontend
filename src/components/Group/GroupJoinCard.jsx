@@ -1,14 +1,34 @@
 import React from "react";
 import { FaUserGroup } from "react-icons/fa6";
+import {privateAxios} from "../../apis/axiosInstances.js";
+import {useNavigate} from "react-router-dom";
 
-const GroupJoinCard = ({src, group_name, title, author, user_current, user_limit}) => {
+const GroupJoinCard = ({src, group_id, group_name, title, author, user_current, user_limit}) => {
+  const navigate = useNavigate();
+
+  const handleJoinButtonClick = async (e) => {
+    e.preventDefault();
+    const joinRequest = {
+      groupId: group_id,
+    }
+    await privateAxios.post(`/groups/join`, joinRequest)
+      .then((response) => {
+        if (response.status === 200) {
+          navigate(`/groups/${group_id}`);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
   return (
     <div className="flex items-center bg-white shadow-md rounded-2xl p-4 w-full mx-auto justify-between">
         {/* 책 이미지와 텍스트 정보 */}
         <div className="flex items-center">
             {/* 책 이미지 */}
             <div className="w-14">
-                <img 
+                <img
                     src={src}
                     alt="이미지"
                     className="w-full rounded-md"
@@ -31,7 +51,10 @@ const GroupJoinCard = ({src, group_name, title, author, user_current, user_limit
                 <span className="text-gray-800 ml-1">{user_current}/{user_limit}</span>
             </div>
             {/* 참가 버튼 */}
-            <button className="bg-indigo-600 text-white text-sm suite-bold rounded-xl px-4 py-2">
+            <button
+              className="bg-indigo-600 text-white text-sm suite-bold rounded-xl px-4 py-2"
+              onClick={(e) => handleJoinButtonClick(e)}
+            >
                 참가
             </button>
         </div>
