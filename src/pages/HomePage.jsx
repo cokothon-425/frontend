@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import BottomNav from "../components/BottomNav";
 import { privateAxios } from "../apis/axiosInstances";
 
-
 function Home() {
   const navigate = useNavigate();
   const books = [
@@ -14,65 +13,6 @@ function Home() {
     { src: "/book_example.png", title: "책 제목", author: "작가", num: "3" },
     { src: "/book_example.png", title: "책 제목", author: "작가", num: "4" },
     { src: "/book_example.png", title: "책 제목", author: "작가", num: "5" },
-  ];
-
-  const groups_demo = [
-    {
-      src: "/book_example.png",
-      group_name: "그룹 이름",
-      title: "책 이름",
-      author: "모임장 이름",
-      user_current: 3,
-      user_limit: 5,
-    },
-    {
-      src: "/book_example.png",
-      group_name: "그룹 이름",
-      title: "책 이름",
-      author: "모임장 이름",
-      user_current: 3,
-      user_limit: 5,
-    },
-    {
-      src: "/book_example.png",
-      group_name: "그룹 이름",
-      title: "책 이름",
-      author: "모임장 이름",
-      user_current: 3,
-      user_limit: 5,
-    },
-    {
-      src: "/book_example.png",
-      group_name: "그룹 이름",
-      title: "책 이름",
-      author: "모임장 이름",
-      user_current: 3,
-      user_limit: 5,
-    },
-    {
-      src: "/book_example.png",
-      group_name: "그룹 이름",
-      title: "책 이름",
-      author: "모임장 이름",
-      user_current: 3,
-      user_limit: 5,
-    },
-    {
-      src: "/book_example.png",
-      group_name: "그룹 이름",
-      title: "책 이름",
-      author: "모임장 이름",
-      user_current: 3,
-      user_limit: 5,
-    },
-    {
-      src: "/book_example.png",
-      group_name: "그룹 이름",
-      title: "책 이름",
-      author: "모임장 이름",
-      user_current: 3,
-      user_limit: 5,
-    },
   ];
 
   const [groups, setGroups] = useState([]); // 그룹 데이터 상태 변수
@@ -98,6 +38,12 @@ function Home() {
     }
   }, []);
 
+  // 그룹 상세 페이지로 이동하는 함수
+  const handleGroupClick = (groupId) => {
+    console.log(`Clicked group ID: ${groupId}`);
+    navigate(`/group/${groupId}`); // groupId를 기반으로 그룹 상세 페이지로 이동
+  };
+
   return (
     <div className="mb-20 p-2">
       <h3 className="suite-extrabold mb-2 text-xl pl-4 pt-4">모임 인기 책</h3>
@@ -118,9 +64,9 @@ function Home() {
         <h3 className="suite-extrabold mb-2 text-xl mt-4">참여 중인 모임</h3>
         {/* 그룹 카드들에 간격 추가 */}
         <div className="flex flex-col gap-4">
-            {groups.length > 0 ? (
+          {groups.length > 0 ? (
             groups.map((group, index) => (
-                <GroupShowCard
+              <GroupShowCard
                 key={index}
                 src={group.book.cover} // 책 커버 이미지
                 group_name={group.name} // 그룹 이름
@@ -130,12 +76,13 @@ function Home() {
                 user_current={group.currentCount} // 현재 참여자 수
                 user_limit={group.maxCount} // 최대 참여자 수
                 description={group.description} // 모임 설명
-                />
+                onClick={() => handleGroupClick(group.id)} // 그룹 ID로 이동
+              />
             ))
-            ) : (
+          ) : (
             <p>모임을 찾을 수 없습니다.</p>
-            )}
-      </div>
+          )}
+        </div>
       </div>
       {/* BottomNav도 모든 페이지에 고정 */}
       <BottomNav />
