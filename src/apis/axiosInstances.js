@@ -6,6 +6,3 @@ export const privateAxios = axios.create({
     Authorization: `Bearer ${localStorage.getItem('token')}`
   }
 });
-
-export const aladdinAxios = axios.create({
-});
