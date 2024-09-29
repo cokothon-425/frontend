@@ -146,21 +146,21 @@ const GroupDetailPage = () => {
                                 <option value="AFTER">다 읽었어요</option>
                             </select>
 
-                            {readingStatus === 'reading' && (
+                            {readingStatus === 'READING' && (
                                 <div className="flex mt-2">
                                     <input
                                         type="number"
                                         placeholder="페이지 시작"
                                         className="border border-gray-300 p-2 mr-2 rounded-lg w-1/2"
                                         value={pagesRead.start}
-                                        onChange={(e) => setPagesRead({ ...pagesRead, start: e.target.value })}
+                                        onChange={(e) => setPagesRead((pagesRead) => pagesRead.start = e.target.value)}
                                     />
                                     <input
                                         type="number"
                                         placeholder="페이지 끝"
                                         className="border border-gray-300 p-2 rounded-lg w-1/2"
                                         value={pagesRead.end}
-                                        onChange={(e) => setPagesRead({ ...pagesRead, end: e.target.value })}
+                                        onChange={(e) => setPagesRead((pagesRead) => pagesRead.end = e.target.value)}
                                     />
                                 </div>
                             )}
