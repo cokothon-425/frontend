@@ -7,13 +7,7 @@ import { privateAxios } from "../apis/axiosInstances";
 
 function Home() {
   const navigate = useNavigate();
-  const books = [
-    { src: "/book_example.png", title: "1퍼센트 부자들의 법칙", author: "가나다", num: "1" },
-    { src: "/book_example.png", title: "난장이가 쏘아 올린 작은 공", author: "작가", num: "2" },
-    { src: "/book_example.png", title: "책 제목", author: "작가", num: "3" },
-    { src: "/book_example.png", title: "책 제목", author: "작가", num: "4" },
-    { src: "/book_example.png", title: "책 제목", author: "작가", num: "5" },
-  ];
+  const [books, setBooks] = useState([]);
 
   const [groups, setGroups] = useState([]); // 그룹 데이터 상태 변수
 
@@ -21,9 +15,10 @@ function Home() {
   useEffect(() => {
     const fetchGroups = async () => {
       try {
-        const response = await privateAxios.get(`/groups`);
-        console.log(response.data); // 응답 데이터 확인
-        setGroups(response.data);   // 받아온 데이터를 상태로 저장
+        const response = await privateAxios.get(`/home`);
+        console.log(response.data);
+        setBooks(response.data.hotBooks);// 응답 데이터 확인
+        setGroups(response.data.groups);   // 받아온 데이터를 상태로 저장
       } catch (error) {
         console.error("Error fetching groups:", error);
       }
@@ -52,7 +47,7 @@ function Home() {
           {books.map((book, index) => (
             <BookCoverScore
               key={index}
-              src={book.src}
+              src={book.cover}
               title={book.title}
               author={book.author}
               num={book.num}

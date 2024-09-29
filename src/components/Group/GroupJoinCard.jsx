@@ -14,7 +14,7 @@ const GroupJoinCard = ({src, group_id, group_name, title, author, user_current, 
     await privateAxios.post(`/groups/join`, joinRequest)
       .then((response) => {
         if (response.status === 200) {
-          navigate(`/groups/${group_id}`);
+          navigate(`/group/${group_id}`);
         }
       })
       .catch((error) => {
