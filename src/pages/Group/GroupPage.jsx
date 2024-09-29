@@ -7,8 +7,6 @@ import { useParams } from "react-router-dom";
 import { privateAxios } from "../../apis/axiosInstances";
 
 function GroupPage() {
-  const params = useParams();
-  const groupId = params.groupId;
   const groups = [
     {
       src: "/book_example.png",
@@ -79,6 +77,7 @@ function GroupPage() {
         {groups.map((group, index) => (
           <GroupJoinCard
             key={index}
+            id={group.id}
             src={group.src}
             group_name={group.group_name}
             title={group.title}
@@ -88,7 +87,7 @@ function GroupPage() {
           />
         ))}
       </div>
-      
+
       {/* BottomNav도 모든 페이지에 고정 */}
       <BottomNav />
     </div>
