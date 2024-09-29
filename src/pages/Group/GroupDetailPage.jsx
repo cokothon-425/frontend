@@ -30,15 +30,6 @@ const GroupDetailPage = () => {
         { name: "세종대왕", comment: "세종대왕의 첫 번째 댓글", page_start: "401", page_end: "500", date: "2024. 09. 29" }
     ];
 
-    useEffect(async () => {
-        await privateAxios.get(`/groups/${groupId}`)
-        .then((response) => {
-            console.log(response.data);    
-        }).catch((error) => {
-            console.error(error);
-        });
-    }, []);
-
     // 글자 수 계산
     const handleTextChange = (e) => {
         setCurrentText(e.target.value);
