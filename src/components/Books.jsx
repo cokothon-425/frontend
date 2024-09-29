@@ -1,13 +1,10 @@
 import React, { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
-const Books = ({ src, title, author }) => {
+const Books = ({ src, title, author, publisher, isbn }) => {
   const navigate = useNavigate();
-  const location = useLocation();
 
   useEffect(() => {
-    console.log('title: ' + title);
-    console.log('author: ' + author);
   }, [title, author]);
 
   return (
@@ -20,7 +17,7 @@ const Books = ({ src, title, author }) => {
         </div>
         {/* 텍스트 부분 */}
         <div>
-          <div className="text-lg font-semibold">{title}</div>
+          <div className="w-[190px] truncate text-lg font-semibold">{title}</div>
           <div className="text-md text-gray-600">{author}</div>
         </div>
       </div>
@@ -28,7 +25,9 @@ const Books = ({ src, title, author }) => {
       {/* 버튼 부분 */}
       <div className="flex justify-center items-center basis-1/4">
         <button
-          onClick={() => navigate(-1)}
+          onClick={() =>
+            navigate(`/group-creation?title=${title}&author=${author}&cover=${src}&isbn=${isbn}&publisher=${publisher}`)
+          }
           className="p-3 bg-indigo-700 text-center rounded-xl text-white font-bold">
           선택하기
         </button>

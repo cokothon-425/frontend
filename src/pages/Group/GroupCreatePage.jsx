@@ -5,18 +5,19 @@ import { privateAxios } from "../../apis/axiosInstances";
 
 function GroupCreatePage() {
   const navigate = useNavigate();
+  const queryParams = new URLSearchParams(window.location.search);
+  const book = {
+    title: decodeURIComponent(queryParams.get('title')),
+    author: decodeURIComponent(queryParams.get('author')),
+    cover: decodeURIComponent(queryParams.get('cover')),
+    publisher: decodeURIComponent(queryParams.get('publisher')),
+    isbn: Number(decodeURIComponent(queryParams.get('isbn'))),
+  }
 
   // 상태 값 관리
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [maxCount, setMaxCount] = useState(0);
-  const [book, setBook] = useState({
-    title: "1퍼센트 부자들의 법칙",
-    author: "가나다",
-    cover: "/book_example.png",
-    publisher: "출판사 이름",
-    isbn: 1234567890123,
-  });
 
   const handleSubmit = async () => {
     try {
@@ -40,7 +41,7 @@ function GroupCreatePage() {
   return (
     <div className="max-w-md mx-auto p-4">
       <h1 className="suite-bold text-2xl mb-4">모임 생성</h1>
-      
+
       <div className="grid grid-cols-2 gap-4">
         {/* 왼쪽: 책 커버 */}
         <div>
@@ -48,7 +49,7 @@ function GroupCreatePage() {
           <img
             src={book.cover}
             alt="북 커버"
-            className="w-full h-auto rounded-lg shadow-md"
+            className="w-full h-[235px] rounded-lg shadow-md"
           />
           <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 p-2 rounded-b-lg">
             <p className="text-white suite-heavy text-sm">{book.title}</p>
@@ -81,7 +82,7 @@ function GroupCreatePage() {
               onChange={(e) => setDescription(e.target.value)}
             />
           </div>
-          
+
           <div>
             <label className="suite-bold block mb-2">참여 인원</label>
             <input
@@ -97,8 +98,8 @@ function GroupCreatePage() {
 
       {/* 모임 생성 및 다음에 하기 버튼 */}
       <div className="relative bottom-0 left-0 w-full p-4">
-        <button 
-          onClick={handleSubmit} 
+        <button
+          onClick={handleSubmit}
           className="w-full bg-blue-600 text-white p-3 rounded-lg mb-2"
         >
           모임 생성하기
