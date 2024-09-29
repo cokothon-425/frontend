@@ -22,10 +22,24 @@ function GroupPage() {
     fetchGroups(); // 데이터 호출
   }, []);
 
+  const handleKeywordChange = async (text) => {
+        try {
+        const response = await privateAxios.get(`/groups/search?keyword=${text}`);
+        console.log(response.data);
+        setGroups(response.data);
+        } catch (error) {
+        console.error("Error fetching groups:", error);
+        }
+    }  
+
+
   return (
     <div className="mb-20 p-2">
       <h1 className="suite-bold text-2xl mb-4">모임 찾기</h1>
-      <SearchBar />
+      <SearchBar 
+        placeholder={'책 이름으로 모임 검색하기'}
+        onKeywordChange={(text) => handleKeywordChange(text)}
+      />
 
       {/* 그룹 카드들에 간격 추가 */}
       <div className="flex flex-col gap-4">
