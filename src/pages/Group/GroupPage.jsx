@@ -1,9 +1,14 @@
 import React from "react";
+import { useEffect } from "react";
 import SearchBar from "../../components/SearchBar";
 import BottomNav from "../../components/BottomNav";
 import GroupJoinCard from "../../components/Group/GroupJoinCard";
+import { useParams } from "react-router-dom";
+import { privateAxios } from "../../apis/axiosInstances";
 
 function GroupPage() {
+  const params = useParams();
+  const groupId = params.groupId;
   const groups = [
     {
       src: "/book_example.png",
@@ -62,6 +67,7 @@ function GroupPage() {
       user_limit: 5,
     },
   ];
+
 
   return (
     <div className="mb-20 p-2">
