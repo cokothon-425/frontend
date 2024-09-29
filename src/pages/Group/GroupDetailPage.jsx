@@ -60,12 +60,15 @@ const GroupDetailPage = () => {
     }
 
     const recordByStatus = (status, record, index) => {
+        console.log("record_content: " + record.content);
+
+
         if (status === 'BEFORE') {
-            return <BookComment_start key={index} commment={record.content} date={record.createdAt} />;
+            return <BookComment_start key={index} content={record.content} date={record.createdAt} />;
         } else if (status === 'READING') {
-            return <BookComment key={index} commment={record.content} date={record.createdAt} page_start={record.startPage} page_end={record.page_end} />;
-        } else {
-            return <BookComment_end key={index} commment={record.content} date={record.createdAt} />;
+            return <BookComment key={index} content2={record.content} date={record.createdAt} page_start={record.startPage} page_end={record.page_end} />;
+        } else if (status === 'AFTER') {
+            return <BookComment_end key={index} content1={record.content} date={record.createdAt} />;
         }
     }
 
@@ -120,7 +123,8 @@ const GroupDetailPage = () => {
 
             <div className="mt-4 w-full">
                 {/* + 새 글 쓰기 버튼 또는 작성 폼 */}
-                {!isWriting ? (
+                
+                {(localStorage.getItem('userName') && localStorage.getItem('userName') === groupData.members[selectedUser].name) ? (!isWriting ? (
                     <div 
                         onClick={() => setIsWriting(true)} // 버튼 클릭 시 작성 폼으로 변경
                         className="cursor-pointer flex justify-center items-center p-4 mb-2 rounded-lg border border-gray-200 shadow-md"
@@ -179,8 +183,7 @@ const GroupDetailPage = () => {
                             </button>
                         </div>
                     </div>
-                )}
-
+                )) : null}
                 {
                     groupData.records.filter((record) => record.memberId === groupData.members[selectedUser].id)
                         .map((record, index) => (recordByStatus(record.status, record, index)))

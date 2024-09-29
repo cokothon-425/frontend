@@ -18,7 +18,10 @@ function Home() {
         const response = await privateAxios.get(`/home`);
         console.log(response.data);
         setBooks(response.data.hotBooks);// 응답 데이터 확인
-        setGroups(response.data.groups);   // 받아온 데이터를 상태로 저장
+        setGroups(response.data.groups);
+        if (response.data.userName) {
+            localStorage.setItem("userName", response.data.userName);
+        }
       } catch (error) {
         console.error("Error fetching groups:", error);
       }
