@@ -9,72 +9,84 @@ import { privateAxios } from '../../apis/axiosInstances';
 
 const GroupDetailPage = () => {
     const { groupId } = useParams();
+    
+    const [groupData, setGroupData] = useState(null); // 그룹 데이터를 저장할 상태
     const [isWriting, setIsWriting] = useState(false); // 글쓰기 상태 관리
     const [currentText, setCurrentText] = useState(''); // 글자 수 상태 관리
     const [readingStatus, setReadingStatus] = useState('before'); // 독서 상태 관리
     const [pagesRead, setPagesRead] = useState({ start: '', end: '' }); // 읽은 페이지 범위 관리
     const [selectedUser, setSelectedUser] = useState(0); // 선택된 사용자 인덱스 관리
 
-    // 사용자 배열 (예시 데이터)
-    const users = [
-        { name: "홍길동", comment: "댓글", page_start: "001", page_end: "100", date: "2024. 09. 29" },
-        { name: "이순신", comment: "댓글", page_start: "101", page_end: "200", date: "2024. 09. 29" },
-        { name: "강감찬", comment: "댓글", page_start: "201", page_end: "300", date: "2024. 09. 29" },
-        { name: "유관순", comment: "댓글", page_start: "301", page_end: "400", date: "2024. 09. 29" },
-        { name: "김길동", comment: "댓글", page_start: "301", page_end: "400", date: "2024. 09. 29" },
-        { name: "이길동", comment: "댓글", page_start: "301", page_end: "400", date: "2024. 09. 29" },
-        { name: "박길동", comment: "댓글", page_start: "301", page_end: "400", date: "2024. 09. 29" },
-        { name: "최길동", comment: "댓글", page_start: "301", page_end: "400", date: "2024. 09. 29" },
-        { name: "정길동", comment: "댓글", page_start: "301", page_end: "400", date: "2024. 09. 29" },
+    useEffect(() => {
+        const fetchGroup = async () => {
+            try {
+                const response = await privateAxios.get(`/groups/${groupId}`);
+                console.log(response.data);  // API로부터 받아온 데이터 출력
+                setGroupData(response.data); // 받아온 데이터를 상태로 저장
+            } catch (error) {
+                console.error("Error fetching group:", error);
+            }
+        };
 
-        { name: "세종대왕", comment: "세종대왕의 첫 번째 댓글", page_start: "401", page_end: "500", date: "2024. 09. 29" }
-    ];
+        fetchGroup();
+    }, [groupId]);
 
     // 글자 수 계산
     const handleTextChange = (e) => {
         setCurrentText(e.target.value);
     };
 
+    if (!groupData) {
+        return <div>로딩 중...</div>; // 데이터가 로딩 중일 때 표시
+    }
+
     return (
         <div className="flex flex-col items-start justify-start min-h-screen bg-white p-4 mb-20">
+            {/* 그룹명 렌더링 */}
             <h1 className="text-2xl font-bold text-gray-800 mb-1">
-                1퍼센트 부자가 되어보자 모임
+                {groupData.name} {/* 받아온 그룹의 이름 */}
             </h1>
             <p className="text-base text-gray-600 mb-4">
-                6 / 7명 참여 중
+                {groupData.currentCount} / {groupData.maxCount}명 참여 중 {/* 참여자 수 */}
             </p>
             <div className="w-full bg-gray-200 p-4 rounded-lg flex">
                 <div className="w-1/2"> 
                     <BookCover 
-                        src="/book_example.png" 
-                        title="1퍼센트 부자들의 법칙"              
-                        author="가나다"          
-                        num={7}                       
+                        src={groupData.book.cover}  // 받아온 책 커버 이미지
+                        title={groupData.book.title} // 책 제목
+                        author={groupData.book.author} // 저자 이름
+                        num={groupData.maxCount}     // 참여 가능한 인원
                         className="text-lg"   
                     />
                 </div>
                 <div className="w-1/2 flex items-start ml-4">
                     <p className="text-base font-bold text-gray-800">
-                        1퍼센트 부자들의 법칙
+                        {groupData.book.title} {/* 책 제목 */}
                     </p>
                 </div>
             </div>
 
             {/* 사용자 선택 원 */}
             <div className="w-full mt-6 overflow-x-scroll flex space-x-4 p-4">
-                {users.map((user, index) => (
-                    <div 
-                        key={index}
-                        onClick={() => setSelectedUser(index)} // 사용자를 선택
-                        className={`w-12 h-12 ${selectedUser === index ? 'bg-blue-300' : 'bg-gray-300'} rounded-full flex-shrink-0 flex items-center justify-center cursor-pointer`}
-                    >
-                        <span className="text-sm text-white">{user.name[0]}</span> {/* 사용자의 이름 첫 글자 */}
-                    </div>
-                ))}
+                {groupData.records && groupData.records.length > 0 ? (
+                    groupData.records.map((record, index) => (
+                        <div 
+                            key={index}
+                            onClick={() => setSelectedUser(index)} // 사용자를 선택
+                            className={`w-12 h-12 ${selectedUser === index ? 'bg-blue-300' : 'bg-gray-300'} rounded-full flex-shrink-0 flex items-center justify-center cursor-pointer`}
+                        >
+                            <span className="text-sm text-white">{record.name[0]}</span> {/* 사용자의 이름 첫 글자 */}
+                        </div>
+                    ))
+                ) : (
+                    <p>사용자 정보가 없습니다.</p>
+                )}
             </div>
 
             <div className="mt-4">
-                <p className="text-2xl font-bold text-gray-800">{users[selectedUser].name}</p> {/* 선택된 사용자 이름 */}
+                {groupData.records && groupData.records.length > 0 && (
+                    <p className="text-2xl font-bold text-gray-800">{groupData.records[selectedUser].name}</p> 
+                )}
             </div>
 
             <div className="mt-4 w-full">
@@ -141,20 +153,24 @@ const GroupDetailPage = () => {
                 )}
 
                 {/* 선택된 사용자의 댓글 보여주기 */}
-                <BookComment_start
-                    comment={users[selectedUser].comment}
-                    date={users[selectedUser].date}
-                />
-                <BookComment 
-                    page_start={users[selectedUser].page_start}
-                    page_end={users[selectedUser].page_end}
-                    comment={users[selectedUser].comment}
-                    date={users[selectedUser].date}
-                />
-                <BookComment_end
-                    comment={users[selectedUser].comment}
-                    date={users[selectedUser].date}
-                />
+                {groupData.records && groupData.records.length > 0 && (
+                    <>
+                        <BookComment_start
+                            comment={groupData.records[selectedUser].comment}
+                            date={groupData.records[selectedUser].date}
+                        />
+                        <BookComment 
+                            page_start={groupData.records[selectedUser].page_start}
+                            page_end={groupData.records[selectedUser].page_end}
+                            comment={groupData.records[selectedUser].comment}
+                            date={groupData.records[selectedUser].date}
+                        />
+                        <BookComment_end
+                            comment={groupData.records[selectedUser].comment}
+                            date={groupData.records[selectedUser].date}
+                        />
+                    </>
+                )}
             </div>
 
             {/* BottomNav 고정 */}
